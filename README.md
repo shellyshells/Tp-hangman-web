@@ -1,7 +1,5 @@
 # promo
 
-This project is a simple web application demonstrating dynamic content handling, conditional logic, and user input validation using Golang.
-
 ## Prerequisites
 
 - Git
