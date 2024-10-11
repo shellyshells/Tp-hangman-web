@@ -1,4 +1,4 @@
-# Golang Web Application
+# promo
 
 This project is a simple web application demonstrating dynamic content handling, conditional logic, and user input validation using Golang.
 
@@ -13,7 +13,7 @@ This project is a simple web application demonstrating dynamic content handling,
 1. Clone the repository:
    ```
    git clone https://github.com/shellyshells/promo.git
-   cd golang-webapp
+   cd promo
    ```
 
 2. Install dependencies:
