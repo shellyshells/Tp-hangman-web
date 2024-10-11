@@ -5,66 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Class Information</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f4f8;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .container {
-            background-color: #ffffff;
-            border-radius: 8px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #2d3748;
-            margin-bottom: 1rem;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            margin-bottom: 0.5rem;
-        }
-        .icon {
-            width: 24px;
-            height: 24px;
-            vertical-align: middle;
-            margin-right: 0.5rem;
-        }
-        .back-link {
-            display: inline-block;
-            margin-top: 1rem;
-            color: #4a5568;
-            text-decoration: none;
-        }
-        .back-link:hover {
-            text-decoration: underline;
-        }
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+        h1 { color: #333; }
+        ul { list-style-type: none; padding: 0; }
+        li { margin-bottom: 10px; }
+        img { width: 20px; height: 20px; vertical-align: middle; margin-right: 10px; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Class Information</h1>
-        <ul>
-            {{range .Students}}
-            <li>
-                {{if eq .Gender "male"}}
-                <img src="https://img.icons8.com/color/48/000000/male.png" alt="Male" class="icon">
-                {{else}}
-                <img src="https://img.icons8.com/color/48/000000/female.png" alt="Female" class="icon">
-                {{end}}
-                {{.Name}} - Age: {{.Age}}, Gender: {{.Gender}}
-            </li>
+    <h1>Class Information</h1>
+    <ul>
+        {{range .Students}}
+        <li>
+            {{if eq .Gender "male"}}
+                <img src="https://img.icons8.com/color/48/000000/male.png" alt="Male">
+            {{else}}
+                <img src="https://img.icons8.com/color/48/000000/female.png" alt="Female">
             {{end}}
-        </ul>
-        <a href="/" class="back-link">Back to Home</a>
-    </div>
+            {{.Name}} - Age: {{.Age}}, Gender: {{.Gender}}
+        </li>
+        {{end}}
+    </ul>
 </body>
 </html>

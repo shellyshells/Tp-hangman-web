@@ -39,7 +39,6 @@ func init() {
 }
 
 func main() {
-	http.HandleFunc("/", homeHandler)
 	http.HandleFunc("/promo", promoHandler)
 	http.HandleFunc("/change", changeHandler)
 	http.HandleFunc("/user/form", userFormHandler)
@@ -48,10 +47,6 @@ func main() {
 
 	fmt.Println("Server is running on http://localhost:8080")
 	http.ListenAndServe(":8080", nil)
-}
-
-func homeHandler(w http.ResponseWriter, r *http.Request) {
-	templates.ExecuteTemplate(w, "home.html", nil)
 }
 
 func promoHandler(w http.ResponseWriter, r *http.Request) {
@@ -101,6 +96,7 @@ func userTreatmentHandler(w http.ResponseWriter, r *http.Request) {
 	birthDateStr := r.FormValue("birthDate")
 	gender := r.FormValue("gender")
 
+	// Validation
 	if name == "" || firstName == "" || birthDateStr == "" || gender == "" {
 		http.Error(w, "All fields are required", http.StatusBadRequest)
 		return
@@ -112,16 +108,21 @@ func userTreatmentHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	_ = birthDate
-
 	if gender != "male" && gender != "female" && gender != "other" {
 		http.Error(w, "Invalid gender", http.StatusBadRequest)
 		return
 	}
 
+	userData := UserData{
+		Name:      name,
+		FirstName: firstName,
+		BirthDate: birthDate,
+		Gender:    gender,
+	}
+
 	http.SetCookie(w, &http.Cookie{
 		Name:  "userData",
-		Value: fmt.Sprintf("%s|%s|%s|%s", name, firstName, birthDateStr, gender),
+		Value: fmt.Sprintf("%s|%s|%s|%s", userData.Name, userData.FirstName, userData.BirthDate.Format("2006-01-02"), userData.Gender),
 		Path:  "/",
 	})
 
